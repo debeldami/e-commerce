@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { auth } from "../firebase/firebase.util"
 
 
-const Header = ({ currentUserState, location }) => {
+const Header = ({ currentUser }) => {
     return (
         <div className="header">
             <Link to="/" className="logo-container">
@@ -14,7 +14,15 @@ const Header = ({ currentUserState, location }) => {
             <div className="options">
                 <Link className="option" to="/shop">SHOP</Link>
                 <Link className="option" to="/contact">CONTACT</Link>
-                <div>{currentUserState ? <Link to={location.pathname} className="option" onClick={() => auth.signOut()}>SIGN OUT</Link> : <Link className="option" to="/signin">SIGN IN</Link>}</div>
+                {currentUser ? (
+                    <div className='option' onClick={() => auth.signOut()}>
+                        SIGN OUT
+                    </div>
+                ) : (
+                        <Link className='option' to='/signin'>
+                            SIGN IN
+                        </Link>
+                    )}
             </div>
         </div>
     )
