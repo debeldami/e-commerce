@@ -9,7 +9,7 @@ const CartIcon = ({ setCartState, items }) => {
 
     return (<div className="cart-icon" onClick={() => setCartState()}>
         <ShoppingIcon className="shopping-icon" />
-        <span className="item-count">{items.length}</span>
+        <span className="item-count">{items.reduce((acc, cur) => acc + cur.quantity, 0)}</span>
     </div>);
 }
 
