@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { setCartState } from '../../redux/user/user.action';
 
 
-const CartIcon = ({ setCartState }) => {
+const CartIcon = ({ setCartState, items }) => {
 
     return (<div className="cart-icon" onClick={() => setCartState()}>
         <ShoppingIcon className="shopping-icon" />
-        <span className="item-count">0</span>
+        <span className="item-count">{items.length}</span>
     </div>);
 }
 
@@ -18,7 +18,12 @@ const mapDispatchToState = (dispatch) => ({
     setCartState: () => dispatch(setCartState())
 });
 
-export default connect(null, mapDispatchToState)(CartIcon);
+const mapStateToProps = (state) => ({
+    //dispatch === store.getState()
+    items: state.cartState.cartItem
+});
+
+export default connect(mapStateToProps, mapDispatchToState)(CartIcon);
 
 
 
