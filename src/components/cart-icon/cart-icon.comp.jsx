@@ -3,13 +3,14 @@ import './cart-icon.style.scss';
 import { ReactComponent as ShoppingIcon } from '../../assets/shoppingCart.svg';
 import { connect } from 'react-redux';
 import { setCartState } from '../../redux/user/user.action';
+import { selectCartItemsCount } from '../../redux/user/cart.selectors';
 
 
-const CartIcon = ({ setCartState, items }) => {
+const CartIcon = ({ setCartState, itemCount }) => {
 
     return (<div className="cart-icon" onClick={() => setCartState()}>
         <ShoppingIcon className="shopping-icon" />
-        <span className="item-count">{items.reduce((acc, cur) => acc + cur.quantity, 0)}</span>
+        <span className="item-count">{itemCount}</span>
     </div>);
 }
 
@@ -19,8 +20,8 @@ const mapDispatchToState = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-    //dispatch === store.getState()
-    items: state.cartState.cartItem
+
+    itemCount: selectCartItemsCount(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(CartIcon);
