@@ -79,11 +79,20 @@ export const auth = firebase.auth();
 
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-provider.setCustomParameters({ prompt: 'select_account' });
+googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-export const signWithGoogle = () => auth.signInWithPopup(provider);
+export const signWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubcribe = auth.onAuthStateChanged(userAuth => {
+            unsubcribe();
+            resolve(userAuth);
+        }, reject)
+    });
+}
 
 export default firebase;
 
