@@ -12,6 +12,7 @@ const CartIcon = ({ setCartState, itemCount }) => {
         <ShoppingIcon className="shopping-icon" />
         <span className="item-count">{itemCount}</span>
     </div>);
+
 }
 
 const mapDispatchToState = (dispatch) => ({
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => ({
     itemCount: selectCartItemsCount(state)
 });
 
-export default connect(mapStateToProps, mapDispatchToState)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToState)(CartIcon)
 
 
 
