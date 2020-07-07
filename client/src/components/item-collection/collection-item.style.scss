@@ -1,5 +1,5 @@
 .collection-item {
-  width: 22vw;
+  width: 20vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -21,6 +21,13 @@
     width: 80%;
     display: none;
     transition: all 0.3s;
+
+    @media screen and (max-width: 800px) {
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+      padding: 0 10px;
+    }
   }
 
   &:hover {
@@ -31,6 +38,21 @@
 
     .image {
       opacity: 0.8;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+    align-items: center;
+
+    &:hover {
+      button {
+        opacity: unset;
+      }
+
+      .image {
+        opacity: unset;
+      }
     }
   }
 
@@ -48,6 +70,16 @@
 
     .price {
       width: 10%;
+    }
+
+    @media screen and (max-width: 800px) {
+      .name {
+        width: unset;
+      }
+
+      .price {
+        width: unset;
+      }
     }
   }
 }
